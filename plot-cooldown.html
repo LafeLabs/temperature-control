@@ -69,30 +69,74 @@ main{
     position:absolute;
     right:0px;
     top:0px;
+    border:solid;
     cursor:pointer;
 }
 </style>
 <script>
 
-
+tlog = [];
+filename = "";
 function setup() {
-    createCanvas(innerHeight-5,innerHeight-5);    
+    createCanvas(innerHeight-5,innerHeight-50);    
     strokeWeight(1);  
     var httpcUpload = new XMLHttpRequest();
     httpcUpload.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             files = JSON.parse(this.responseText);
-            console.log(files);
+            filename = files[files.length-1];
+            var httpc = new XMLHttpRequest();
+            httpc.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    tlog = JSON.parse(this.responseText);
+                }
+            };
+            httpc.open("GET", "load-file.php?filename=cooldown-log-data/" + filename, true);
+            httpc.send();
         }
     };
     httpcUpload.open("GET", "list-files.php?directoryname=cooldown-log-data", true);
     httpcUpload.send();
-    
 }
 
 
 function draw(){
+    
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            tlog = JSON.parse(this.responseText);
+            stroke("blue");
+            strokeWeight(5);
+            noFill();
+            beginShape();
+            for(var index = 0;index < tlog.length;index++){
+                vertex(map(index,0,210,0,width),map(tlog[index].A,0,300,height,0));
+            }
+            endShape();
+            fill("blue");
+            circle(map(index,0,210,0,width),map(tlog[tlog.length - 1].A,0,300,height,0),15);
+                          
+            stroke("red");
+            noFill();
+            beginShape();
+            for(var index = 0;index < tlog.length;index++){
+                vertex(map(index,0,210,0,width),map(tlog[index].B,0,300,height,0));
+            }
+            endShape();
+            fill("red");
+            circle(map(index,0,210,0,width),map(tlog[tlog.length - 1].B,0,300,height,0),15);
+            
 
+            
+        }
+    };
+    httpc.open("GET", "load-file.php?filename=cooldown-log-data/" + filename, true);
+    httpc.send();
+    
+    
+    
+    
     
 }
 
