@@ -15,6 +15,7 @@
         "index.html",
         "list-files.html",
         "organic-web-home.html",
+        "plot-cooldown.html",
         "qrcode.html",
         "read-markdown-files.html",
         "read-markdown-latex-files.html",
@@ -22,7 +23,8 @@
     ],
     "json": [
         "dna.json",
-        "links.json"
+        "links.json",
+        "log.json"
     ],
     "css": [
         "markdown.css",

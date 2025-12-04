@@ -16,6 +16,7 @@
  - [index.html](index.html)
  - [list-files.html](list-files.html)
  - [organic-web-home.html](organic-web-home.html)
+ - [plot-cooldown.html](plot-cooldown.html)
  - [qrcode.html](qrcode.html)
  - [read-markdown-files.html](read-markdown-files.html)
  - [read-markdown-latex-files.html](read-markdown-latex-files.html)
@@ -34,6 +35,7 @@
 
  - [dna.json](dna.json)
  - [links.json](links.json)
+ - [log.json](log.json)
 
 # MARKDOWN FILES
 

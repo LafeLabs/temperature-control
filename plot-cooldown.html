@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <!--
+
+-->
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAPv/AAD4/wAA+38AAPufAAD77wAAA/AAAPvvAAD7nwAA+38AAPj/AAD7/wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon">
+
+   <title>plot cooldown</title>    
+   <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
+</head>
+<body> 
+<div id = "controlscroll">
+    <p>
+        <a href = "index.html">index.html</a>
+    </p>
+    <p>
+        <a href = "edit-web-files.html">edit-web-files.html</a>
+    </p>    
+</div>
+
+<style>
+body{
+    font-family:Arial;
+    background-color:#404040;
+    color:#0CCDDF;
+}
+input{
+    color:#00ff00;
+    background-color:black;
+    font-family:courier;
+    border-color:#0CCDDF;
+}
+h1{
+    text-align:center;
+}
+.button{
+    border:solid;
+    cursor:pointer;
+    text-align:center;
+}
+.button:hover{
+    background-color:#0CCDDF40;
+}
+.button:active{
+    background-color:#0CCDDFa0;
+}
+
+#controlscroll{
+    overflow:scroll;
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    padding-left:1em;
+    padding-right:1em;
+    background-color:#0a0a0a;
+}
+table{
+    border:solid;
+    border-color:#0CCDDF;
+}
+a{
+    color:#ff2cb4;
+}
+
+main{
+    position:absolute;
+    right:0px;
+    top:0px;
+    cursor:pointer;
+}
+</style>
+<script>
+
+
+function setup() {
+    createCanvas(innerHeight-5,innerHeight-5);    
+    strokeWeight(1);  
+    var httpcUpload = new XMLHttpRequest();
+    httpcUpload.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            files = JSON.parse(this.responseText);
+            console.log(files);
+        }
+    };
+    httpcUpload.open("GET", "list-files.php?directoryname=cooldown-log-data", true);
+    httpcUpload.send();
+    
+}
+
+
+function draw(){
+
+    
+}
+
+
+
+
+function keyPressed() {
+  
+//  savejson();
+}
+
+direction = '';
+function mouseWheel(event) {
+  if (event.delta > 0) {
+    direction = 'mouse wheel down';
+
+  } else {
+    direction = 'mouse wheel up';
+  }  
+}
+
+
+
+function savejson(){
+    
+}
+</script>
+</body>
+</html>
+
+
+    
+    
