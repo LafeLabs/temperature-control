@@ -82,6 +82,8 @@ else{
     max-width:90%;
     display:block;
     margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
 }
 #scroll{
     position:absolute;
@@ -472,32 +474,9 @@ var httpc9 = new XMLHttpRequest();
     if (this.readyState == 4 && this.status == 200) {
         upuploadImages = JSON.parse(this.responseText);
         for(var index = upuploadImages.length - 1;index >= 0;index--) {
-            if(upuploadImages[index].includes(".png") + upuploadImages[index].includes("cool")){
+            if(upuploadImages[index].includes(".png") && upuploadImages[index].includes("cooldown")){
                 var newbox = document.createElement("DIV");
                 newbox.classList.add("imagebox");         
-                
-                var deletespan = document.createElement("SPAN");
-                deletespan.innerHTML = "X";
-                deletespan.classList.add("deletespan");
-                deletespan.onclick = function(){
-                    //delete the parent div of the image
-                    //delete the file
-                    var filename = this.parentElement.getElementsByClassName("filelabel")[0].innerHTML; 
-                    var httpc = new XMLHttpRequest();
-                    var url = "delete-file.php";         
-                    httpc.open("POST", url, true);
-                    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-                    httpc.send("filename=" + filename);//send text to deletefile.php
-                    this.parentElement.parentElement.removeChild(this.parentElement);
-                }
-                
-                newbox.appendChild(deletespan);
-        
-                var newdiv = document.createElement("DIV");
-                newdiv.innerHTML = upuploadImages[index];
-                newdiv.className = "filelabel";
-                newbox.appendChild(newdiv);
-            
                 
                 document.getElementById("feedscroll").appendChild(newbox);
                 var newimg = document.createElement("IMG");
